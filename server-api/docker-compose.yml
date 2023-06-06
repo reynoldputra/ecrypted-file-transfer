@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  database:
+      container_name: sqlite_kripto
+      image: nouchka/sqlite3:latest
+      stdin_open: true
+      tty: true
+      ports:
+        - '9000:9000'
+      volumes:
+        - ./data/db/:/root/db
+      environment:
+        - SQLITE_DB=db.sqlite3
+
+  # backend:
+  #   build: .
+  #   ports:
+  #     - 8000:8000
+  #   working_dir: /code
+  #   command : uvicorn app.main:app --port 8000

@@ -15,11 +15,11 @@ def login(username:str):
     login_user(username)
 
 @app.command()
-def encrypt(file: str, public_key_file: str):
+def encrypt(file:str, public_key_file:str):
     encrypt_file(file, public_key_file)
 
 @app.command()
-def decrypt(file: str, private_key_file: str):
+def decrypt(file:str, private_key_file:str):
     decrypt_file(file, private_key_file)
 
 if __name__ == "__main__":
