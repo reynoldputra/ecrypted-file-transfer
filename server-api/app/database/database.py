@@ -2,16 +2,14 @@ import sqlite3
 
 connection = sqlite3.connect("db.sqlite3")
 
-print(connection.total_changes)
-
-cursor = connection.cursor()
-
 def dbCreate(query : str):
+    cursor = connection.cursor()
     cursor.execute(query)
+    connection.commit()
 
-def debGet(query : str):
+def dbGet(query : str):
+    cursor = connection.cursor()
     rows = cursor.execute(query).fetchall()
+    connection.commit()
     return rows
 
-connection.commit()
-connection.close()
