@@ -7,8 +7,8 @@ from lib.credentials.login import login_user
 app = typer.Typer()
 
 @app.command()
-def register(username:str): 
-    register_user(username)
+def register(username:str, email:str): 
+    register_user(username,email)
 
 @app.command()
 def login(username:str):
