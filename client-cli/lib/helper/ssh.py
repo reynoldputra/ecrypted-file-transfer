@@ -1,6 +1,5 @@
 def runCommand(ssh, command):
     # Execute the mkdir command to create a new directory
-    command = ""
     stdin, stdout, stderr = ssh.exec_command(command)
 
     # Check the output for any errors
