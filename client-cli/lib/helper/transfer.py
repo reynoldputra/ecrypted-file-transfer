@@ -10,7 +10,7 @@ def scp(src, dest):
 
     ssh = SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    ssh.connect(hostname=hostname, username=username, password=password)
+    ssh.connect(hostname, username=username, password=password)
 
     scp = SCPClient(ssh.get_transport())
     scp.put(src, recursive=True, remote_path=dest)

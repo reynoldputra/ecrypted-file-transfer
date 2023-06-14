@@ -21,6 +21,14 @@ class InviteDTO(BaseModel):
 
 connection = sqlite3.connect("db.sqlite3")
 
+def create_remote_ssh(username,password):
+    try:
+        command = f"./create_user.sh {username} {password}"
+        process = subprocess.Popen(command, shell=True)
+        process.wait()
+    except:
+        print("Failed create user")
+
 @app.get("/")
 def home():
     return {"Hello": "World"}
@@ -29,6 +37,7 @@ def home():
 def register(registerDTO: RegisterDTO):
     query = "INSERT INTO user (user, password, email) VALUES (?, ?, ?)"
     dbInsert(query, (registerDTO.user, registerDTO.password, registerDTO.email))
+    create_remote_ssh(registerDTO.user, registerDTO.password)
     return {"message": "User registered successfully"}
 
 @app.post("/login")
