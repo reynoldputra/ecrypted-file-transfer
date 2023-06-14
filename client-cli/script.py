@@ -6,6 +6,8 @@ from lib.crypto.encrypt import encrypt_file
 from lib.credentials.register import register_user
 from lib.credentials.login import login_user
 from lib.init.initSession import init_session
+from lib.init.createKey import create_key
+from lib.helper.transfer import scp
 
 app = typer.Typer()
 
@@ -32,6 +34,13 @@ def init(path:str):
 @app.command()
 def select(path: str):
     get_session(path)
+
+def generate(path:str):
+    create_key(path)
+
+@app.command()
+def push(src:str, dest:str):
+    scp(src, dest)
 
 if __name__ == "__main__":
     app()
