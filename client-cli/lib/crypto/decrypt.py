@@ -31,11 +31,10 @@ def decrypt_file(encrypted_file: str, private_key_file: str, output_dir: str):
     os.makedirs(output_dir, exist_ok=True)
 
     # Write the decrypted contents to a new file in the output directory
-    decrypted_file = os.path.join(output_dir, f"{os.path.basename(encrypted_file)}.decrypted")
+    decrypted_file = os.path.join(output_dir, f"{os.path.basename(encrypted_file)}")
     with open(decrypted_file, "wb") as f:
         f.write(decrypted_contents)
 
-    typer.echo(f"File '{encrypted_file}' decrypted successfully. Decrypted file: '{decrypted_file}'.")
 
 
 def decrypt_folder(encrypted_folder: str, private_key_file: str, output_dir: str):

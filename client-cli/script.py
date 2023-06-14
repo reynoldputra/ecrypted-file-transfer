@@ -8,6 +8,8 @@ from lib.credentials.login import login_user
 from lib.init.initSession import init_session
 from lib.init.createKey import create_key
 from lib.helper.transfer import scp
+from lib.transfer.handlePull import handle_pull
+from lib.transfer.handlePush import handle_push
 
 app = typer.Typer()
 
@@ -19,13 +21,13 @@ def register(username:str, email:str):
 def login(username:str):
     login_user(username)
 
-@app.command()
-def encrypt(file:str, public_key_file:str):
-    encrypt_file(file, public_key_file)
+# @app.command()
+# def encrypt(file:str, public_key_file:str):
+#     encrypt_file(file, public_key_file)
 
-@app.command()
-def decrypt(file:str, private_key_file:str):
-    decrypt_file(file, private_key_file)
+# @app.command()
+# def decrypt(file:str, private_key_file:str):
+#     decrypt_file(file, private_key_file)
 
 @app.command()
 def init(path:str):
@@ -39,8 +41,12 @@ def generate(path:str):
     create_key(path)
 
 @app.command()
-def push(src:str, dest:str):
-    scp(src, dest)
+def push(src:str):
+    handle_push(src)
+
+@app.command()
+def pull(src:str):
+    handle_pull(src)
 
 if __name__ == "__main__":
     app()

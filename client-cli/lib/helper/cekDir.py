@@ -2,12 +2,12 @@ import os
 
 def fileExist(path:str):
     if os.path.isfile(path):
-        print(1)
+        return 1
     else:
-        print(0)
+        return 0
 
 def dirExist(path:str):
     if os.path.isdir(path):
-        print(1)
+        return 1
     else:
-        print(0)
+        return 0

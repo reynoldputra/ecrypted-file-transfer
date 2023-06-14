@@ -34,8 +34,6 @@ def encrypt_file(file: str, public_key_file: str, output_dir: str):
     with open(encrypted_file, "wb") as f:
         f.write(encrypted_contents)
 
-    typer.echo(f"File '{file}' encrypted successfully. Encrypted file: '{encrypted_file}'.")
-
 
 def encrypt_folder(folder: str, public_key_file: str, output_dir: str):
     # Load the public key
@@ -45,11 +43,11 @@ def encrypt_folder(folder: str, public_key_file: str, output_dir: str):
             backend=default_backend()
         )
 
-    # Create the output directory if it doesn't exist
     os.makedirs(output_dir, exist_ok=True)
 
-    # Iterate over all files in the folder
     for root, dirs, files in os.walk(folder):
+        if ".eft" in dirs:  # Skip the ".eft" folder
+            dirs.remove(".eft")
         relative_root = os.path.relpath(root, folder)  # Get the relative path of the current root folder
         output_root = os.path.join(output_dir, relative_root)  # Create the corresponding output directory
         os.makedirs(output_root, exist_ok=True)  # Create the output directory if it doesn't exist
@@ -59,3 +57,4 @@ def encrypt_folder(folder: str, public_key_file: str, output_dir: str):
             encrypt_file(file_path, public_key_file, output_root)
 
     typer.echo(f"Folder '{folder}' encrypted successfully.")
+
