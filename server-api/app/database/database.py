@@ -13,7 +13,6 @@ def dbInsert(query : str, value):
     cursor.execute(query, value)
     connection.commit()
 
-
 def dbGet(query : str):
     connection = sqlite3.connect("db.sqlite3")
     cursor = connection.cursor()

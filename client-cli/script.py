@@ -1,11 +1,14 @@
 from paramiko import SSHClient
 import paramiko
+from lib.init.initSession import init_session
 from scp import SCPClient
 import typer
 from lib.crypto.decrypt import decrypt_file
 from lib.crypto.encrypt import encrypt_file
 from lib.credentials.register import register_user
 from lib.credentials.login import login_user
+from lib.init.initSession import init_session
+from lib.init.createKey import create_key
 
 app = typer.Typer()
 
@@ -26,6 +29,24 @@ def decrypt(file:str, private_key_file:str):
     decrypt_file(file, private_key_file)
 
 @app.command()
+def init(path:str):
+    init_session(path)
+
+@app.command()
+def generate(path:str):
+    create_key(path)
+
+
+
+
+
+
+
+
+
+
+
+
 def send():
     hostname = '172.31.0.4'
     username = 'root'

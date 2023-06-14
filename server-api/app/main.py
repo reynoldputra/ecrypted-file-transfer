@@ -41,18 +41,6 @@ def login(loginDTO: LoginDTO):
     else:
         return {"message": "Invalid username or password"}
 
-@app.post("/invite/add")
-def createInvitatioin(inviteDTO : InviteDTO):
-    return {"Hello": "World"}
-
-@app.get("/invite")
-def getInvitation():
-    return {"Hello": "World"}
-
-@app.post("/invite/accept")
-def acceptInvitation():
-    return {"Hello": "World"}
-
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="localhost", port=8000)

@@ -46,4 +46,3 @@ def login_user(username):
     else:
         typer.echo(f"Request failed with status code: {response.status_code}")
 
-    
