@@ -18,6 +18,9 @@ RUN pip install -r ./requirements.txt
 
 # Expose SSH port
 EXPOSE 22
+EXPOSE 8000
 
+WORKDIR /home/server-api/app
 # Start SSH service
-CMD ["/usr/sbin/sshd", "-D"]
+# CMD ["/usr/sbin/sshd", "-D"]
+CMD ["/bin/bash", "-c", "/usr/sbin/sshd && uvicorn main:app --host 0.0.0.0 --port 8000"]

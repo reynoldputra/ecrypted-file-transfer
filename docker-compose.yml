@@ -1,10 +1,10 @@
 version: "3"
 services:
   ubuntu1:
+    container_name: ubuntu1
     build :
       context: .
       dockerfile: ./Dockerfile.client
-    container_name: ubuntu1
     stdin_open: true
     tty: true
     ports:
@@ -12,21 +12,22 @@ services:
     networks:
         - mynetwork
   ubuntu2:
+    container_name: ubuntu2
     build :
       context: .
       dockerfile: ./Dockerfile.server
-    container_name: ubuntu2
     stdin_open: true
     tty: true
     ports:
       - "2202:22"
+      - "8000:8000"
     networks:
         - mynetwork
   ubuntu3:
+    container_name: ubuntu3
     build :
       context: .
       dockerfile: ./Dockerfile.client
-    container_name: ubuntu3
     stdin_open: true
     tty: true
     ports:

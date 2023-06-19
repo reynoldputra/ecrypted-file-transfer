@@ -3,8 +3,6 @@ import hashlib
 import requests
 import json
 
-
-
 def login_user(username):
     password = typer.prompt('Enter password: ')
     encoded_pass = password.encode('utf-8')
